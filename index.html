@@ -5,15 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SoyPerritoProProYT-Console - Mis juegos</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:#080808;color:white;font-family:Arial,sans-serif;text-align:center;padding:25px}
-main{max-width:900px;margin:auto}
-h1{font-size:clamp(30px,7vw,55px)}
-.card{background:#181818;border:1px solid #444;border-radius:18px;padding:25px;margin-top:25px}
-button{padding:15px 22px;border:0;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;margin:6px}
-.play{background:#20d866;color:white}.back{background:#333;color:white}
-#mensaje{margin:20px 0;color:#20d866;font-size:20px;font-weight:bold}
-.vacio{color:#aaa}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080808;color:white;font-family:Arial,sans-serif;text-align:center;padding:25px}main{max-width:900px;margin:auto}h1{font-size:clamp(30px,7vw,55px)}.card{background:#181818;border:1px solid #444;border-radius:18px;padding:25px;margin-top:25px}button{padding:15px 22px;border:0;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;margin:6px}.play{background:#20d866;color:white}.back{background:#333;color:white}#mensaje{margin:20px 0;color:#20d866;font-size:20px;font-weight:bold;min-height:28px}.vacio{color:#aaa}
 </style>
 </head>
 <body>
@@ -24,31 +16,13 @@ button{padding:15px 22px;border:0;border-radius:12px;font-size:18px;font-weight:
 <section id="lista"></section>
 </main>
 <script>
-const juegos={
-  'soyperrito-adventure':{nombre:'🐶 SoyPerrito Adventure',descripcion:'Juego oficial de SoyPerritoProProYT',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console/juegos/soyperrito-adventure.html'}
-};
+const juegos={'soyperrito-adventure':{nombre:'🐶 SoyPerrito Adventure',descripcion:'Juego oficial de SoyPerritoProProYT',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console/juegos/soyperrito-adventure.html'}};
 const params=new URLSearchParams(location.search);
 const anadir=params.get('add');
 let guardados=JSON.parse(localStorage.getItem('misJuegos')||'[]');
-if(anadir && juegos[anadir] && !guardados.includes(anadir)){
-  guardados.push(anadir);
-  localStorage.setItem('misJuegos',JSON.stringify(guardados));
-  document.getElementById('mensaje').textContent='✅ Añadido a Mis juegos';
-}else if(anadir && juegos[anadir]){
-  document.getElementById('mensaje').textContent='✅ Ya está en Mis juegos';
-}
-function mostrar(){
- const lista=document.getElementById('lista');
- lista.innerHTML='';
- if(!guardados.length){lista.innerHTML='<div class="card vacio">Todavía no tienes juegos añadidos.<br>Ve a 🛒 SHOP y pulsa 🆓 GRATIS.</div>';return;}
- guardados.forEach(id=>{
-  const j=juegos[id];
-  if(!j)return;
-  const card=document.createElement('div');card.className='card';
-  card.innerHTML=`<h2>${j.nombre}</h2><p>${j.descripcion}</p><p>🆓 GRATIS</p><button class="play" onclick="location.href='${j.url}'">▶️ JUGAR</button>`;
-  lista.appendChild(card);
- });
-}
+if(anadir&&juegos[anadir]&&!guardados.includes(anadir)){guardados.push(anadir);localStorage.setItem('misJuegos',JSON.stringify(guardados));document.getElementById('mensaje').textContent='✅ Añadido a Mis juegos';}
+else if(anadir&&juegos[anadir])document.getElementById('mensaje').textContent='✅ Ya está en Mis juegos';
+function mostrar(){const lista=document.getElementById('lista');lista.innerHTML='';if(!guardados.length){lista.innerHTML='<div class="card vacio">Todavía no tienes juegos añadidos.<br>Ve a 🛒 SHOP y pulsa 🆓 GRATIS.</div>';return;}guardados.forEach(id=>{const j=juegos[id];if(!j)return;const card=document.createElement('div');card.className='card';card.innerHTML=`<h2>${j.nombre}</h2><p>${j.descripcion}</p><p>🆓 GRATIS</p><button class="play" type="button">▶️ JUGAR</button>`;card.querySelector('.play').addEventListener('click',()=>{window.location.assign(j.url);});lista.appendChild(card);});}
 mostrar();
 </script>
 </body>
