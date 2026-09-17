@@ -16,7 +16,11 @@
 <section id="lista"></section>
 </main>
 <script>
-const juegos={'soyperrito-adventure':{nombre:'🐶 SoyPerrito Adventure',descripcion:'Juego oficial de SoyPerritoProProYT',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console/juegos/soyperrito-adventure.html'}};
+const juegos={
+' soypErrito-adventure':{nombre:'🐶 SoyPerrito Adventure',descripcion:'Juego oficial de SoyPerritoProProYT',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console/juegos/soyperrito-adventure.html'},
+'soyperrito-adventure':{nombre:'🐶 SoyPerrito Adventure',descripcion:'Juego oficial de SoyPerritoProProYT',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console/juegos/soyperrito-adventure.html'},
+'soyperritoproproyt-bed':{nombre:'🧱 SoyPerritoProProYT-Bed',descripcion:'🌍 Mundo de bloques • 👕 8 skins gratis',url:'https://soyperritoyt.github.io/SoyPerritoProProYT-Console-Bed/'}
+};
 const params=new URLSearchParams(location.search);
 const anadir=params.get('add');
 let guardados=JSON.parse(localStorage.getItem('misJuegos')||'[]');
